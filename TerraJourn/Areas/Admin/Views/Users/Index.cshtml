@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TerraJourn.Models.Entities.User>
+
+@{
+    ViewBag.Title = "Kullanıcı Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kullanıcı Listesi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kullanıcı Oluştur", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Kullanıcı Adı</th>
+        <th>Rol</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Role</td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = user.UserId }, new { @class = "btn btn-warning btn-sm" }) |
+
+                @Html.ActionLink("Detaylar", "Details", new { id = user.UserId }, new { @class = "btn btn-info btn-sm" }) |
+
+                <form action="@Url.Action("Delete", "Users", new { id = user.UserId })" method="post" onsubmit="return confirm('Bu kullanıcıyı silmek istediğinizden emin misiniz?')" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

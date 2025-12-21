@@ -1,0 +1,18 @@
+﻿@using TerraJourn.Models.Entities
+@model List<TouristAttraction>
+
+<h2 class="section-title">Sizin İçin Seçtiklerimiz</h2>
+
+<div class="gallery-grid">
+    @foreach (var attraction in Model.Take(6))
+    {
+        <div class="gallery-item">
+            <img src="@attraction.ImageUrl" alt="@attraction.Name">
+            <div class="gallery-overlay">
+                <a href="@Url.Action("PlaceDetail", "Guide", new { id = attraction.TouristAttractionId })">
+                    @attraction.Name
+                </a>
+            </div>
+        </div>
+    }
+</div>

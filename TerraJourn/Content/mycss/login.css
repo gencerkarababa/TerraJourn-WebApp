@@ -1,0 +1,108 @@
+﻿body {
+    background: url("../../Images/yeni_tatil_resmi.jpg") 0px 0px no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+}
+
+.padding-all {
+    padding: 100px;
+}
+
+.header {
+    padding-bottom: 50px;
+}
+
+    .header h1 {
+        font-size: 50px;
+        color: #fff;
+        font-family: 'Cormorant SC', serif;
+        letter-spacing: 3px;
+        text-shadow: 1px 1px 4px #000;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+.design-w3l {
+    width: 36%;
+    margin: 0 auto;
+}
+
+.mail-form-agile {
+    padding: 50px 40px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 13px 10px;
+    width: calc(100% - 20px);
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid #001f3f;
+    color: #001f3f;
+    letter-spacing: 1.6px;
+}
+
+::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+.submit-btn {
+    font-size: 18px;
+    padding: 10px 25px;
+    letter-spacing: 1.2px;
+    border: none;
+    text-transform: capitalize;
+    outline: none;
+    background: #001f3f;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 0.9s;
+    margin-top: 15px;
+}
+
+    .submit-btn:hover {
+        background: rgba(91, 157, 214, 0.76);
+    }
+
+.error-message, .text-danger {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.footer {
+    padding-top: 70px;
+    text-align:center;
+}
+
+    .footer p {
+        font-size: 16px;
+        color: #fff;
+        letter-spacing: 1.4px;
+    }
+
+/* Responsive */
+@media screen and (max-width: 991px) {
+    .design-w3l {
+        width: 54%;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .design-w3l {
+        width: 75%;
+    }
+}

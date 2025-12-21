@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TerraJourn.Models.Entities.BlogCategory>
+
+@{
+    ViewBag.Title = "Blog Kategori Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kategori Oluştur", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Ad</th>
+        <th>İkon</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.IconClass))
+                {
+                    <i class="@item.IconClass"></i> <span style="margin-left:5px;">@item.IconClass</span>
+                }
+                else
+                {
+                    <span class="text-muted">Yok</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.BlogCategoryId }, new { @class = "btn btn-warning btn-sm" }) |
+                <form action="@Url.Action("Delete", "BlogCategories", new { id = item.BlogCategoryId })" method="post" onsubmit="return confirm('Bu kategoriyi silmek istediğinizden emin misiniz?');" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

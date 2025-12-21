@@ -1,0 +1,12 @@
+# --- Kişisel Sifre ---
+connections.config
+
+# --- VS ---
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# --- Packages ---
+packages/

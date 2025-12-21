@@ -1,0 +1,54 @@
+﻿@model List<TerraJourn.Models.Entities.Blog>
+@using TerraJourn.Models.Entities
+
+@{
+    ViewBag.Title = "Bloglarım";
+    Layout = "~/Areas/Member/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+<p>
+    <a href="@Url.Action("Create", "Blogs", new { area = "Member" })" class="btn btn-primary">Yeni Blog Oluştur</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Blog Adı</th>
+            <th>Kategoriler</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>
+                    @if (item.BlogCategories != null && item.BlogCategories.Any())
+                    {
+                        @(string.Join(", ", item.BlogCategories.Select(c => c.Name)))
+                    }
+                    else
+                    {
+                        @:Kategorisiz
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Blogs", new { area = "Member", id = item.BlogId })" class="btn btn-warning btn-sm">
+                        Düzenle
+                    </a> |
+                    <a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogId, area = "" })" class="btn btn-info btn-sm">
+                        Görüntüle
+                    </a> |
+                    <form action="@Url.Action("Delete", "Blogs", new { area = "Member", id = item.BlogId })" method="post" onsubmit="return confirm('Bu blogu silmek istediğinizden emin misiniz?');" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

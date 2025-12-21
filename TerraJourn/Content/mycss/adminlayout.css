@@ -1,0 +1,181 @@
+﻿:root {
+    --navy-blue: #001f3f;
+    --cream: #C2A385;
+    --white: #ffffff;
+    --bg-light: #f4f6f9;
+    --text-dark: #333;
+    --danger: #dc3545;
+    --success: #28a745;
+    --sidebar-width: 260px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 1. SIDEBAR (SOL MENÜ) */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--navy-blue);
+    color: var(--cream);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.2);
+}
+
+    .sidebar-header h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--white);
+        font-weight: 700;
+    }
+
+.sidebar-menu {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 15px 25px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-left: 4px solid transparent;
+}
+
+    .menu-item i {
+        font-size: 1.2rem;
+        width: 25px;
+    }
+
+    .menu-item:hover {
+        background-color: rgba(255,255,255,0.05);
+        color: var(--white);
+        border-left-color: var(--cream);
+    }
+
+.menu-divider {
+    height: 1px;
+    background-color: rgba(255,255,255,0.1);
+    margin: 10px 20px;
+}
+
+/* 2. ANA İÇERİK ALANI */
+.main-wrapper {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    display: flex;
+    flex-direction: column;
+}
+
+/* Üst Header */
+.admin-header {
+    background-color: var(--white);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: var(--navy-blue);
+    font-weight: 700;
+    margin: 0;
+}
+
+.content-body {
+    padding: 40px;
+}
+
+/* 3. ALERT KUTULARI (TempData Mesajları) */
+.alert-box {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid #28a745;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+    .close-btn:hover {
+        opacity: 1;
+    }
+
+/* Responsive (Tablet/Mobil) */
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 70px;
+        overflow: hidden;
+    }
+
+    .sidebar-header h3, .menu-item span {
+        display: none;
+    }
+
+    .menu-item {
+        justify-content: center;
+        padding: 15px 0;
+    }
+
+        .menu-item i {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+    .main-wrapper {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .admin-header {
+        padding: 0 20px;
+    }
+}

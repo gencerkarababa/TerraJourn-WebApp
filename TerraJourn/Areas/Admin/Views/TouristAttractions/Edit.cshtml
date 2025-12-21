@@ -1,0 +1,97 @@
+﻿@model TerraJourn.Models.Entities.TouristAttraction
+
+@{
+    ViewBag.Title = "Mekan Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    var allCategories = (IEnumerable<TerraJourn.Models.Entities.PlaceCategory>)ViewBag.PlaceCategories;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "TouristAttractions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.TouristAttractionId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Mekan Adı", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUrl, "Görsel URL", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, "Açıklama", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, 5, 40, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, "Adres", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, "Ülke", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, "Şehir", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <hr />
+
+        <h4>Mekan Kategorileri</h4>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="row">
+                    @if (allCategories != null)
+                    {
+                        foreach (var category in allCategories)
+                        {
+                            bool isAssigned = Model.PlaceCategories.Any(pc => pc.PlaceCategoryId == category.PlaceCategoryId);
+                            <div class="col-md-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"
+                                           name="selectedCategories"
+                                           value="@category.PlaceCategoryId"
+                                           @(isAssigned ? "checked=\"checked\"" : "") />
+                                    @category.Name
+                                </label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Değişiklikleri Kaydet" class="btn btn-success" />
+                @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

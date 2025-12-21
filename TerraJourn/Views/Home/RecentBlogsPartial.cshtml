@@ -1,0 +1,20 @@
+﻿@using TerraJourn.Models.Entities
+@model List<Blog>
+
+<h2 class="section-title">Son Yazılan Bloglar</h2>
+
+<div class="grid-row">
+    @foreach (var blog in Model.OrderByDescending(b => b.CreatedDate).Take(3))
+    {
+        <div class="card">
+            <img src="@blog.ImageUrl" alt="@blog.Title" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">@blog.Title</h3>
+                <p class="card-desc">
+                    @(blog.Content != null && blog.Content.Length > 75 ? blog.Content.Substring(0, 75) + "..." : blog.Content)
+                </p>
+                <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })" class="read-more">Devamını Oku >></a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TerraJourn.Models.Entities.TouristAttraction>
+
+@{
+    ViewBag.Title = "Mekanlar";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/attractions.css" rel="stylesheet" />
+
+<div class="main-container">
+
+    <div class="attraction-layout">
+
+        <div class="attraction-list">
+
+            <div style="margin-left: 15px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                @if (!string.IsNullOrEmpty(ViewBag.SearchQuery))
+                {
+                    <h2 style="color:#001f3f;">"@ViewBag.SearchQuery" Sonuçları</h2>
+                }
+                else if (ViewBag.CategoryName != null)
+                {
+                    <h2 style="color:#001f3f;">@ViewBag.CategoryName</h2>
+                }
+                else
+                {
+                    <h2 style="color:#001f3f;">Tüm Mekanlar</h2>
+                }
+            </div>
+
+            @foreach (var mekan in Model)
+            {
+                <div class="attraction-card">
+
+                    <div class="attraction-img-wrapper">
+                        <img src="@mekan.ImageUrl" alt="@mekan.Name" class="attraction-img" />
+                    </div>
+
+                    <div class="attraction-body">
+                        <div>
+                            <a href="@Url.Action("PlaceDetail", "Guide", new { id = mekan.TouristAttractionId })" style="text-decoration:none;">
+                                <h3 class="entry-title">@mekan.Name</h3>
+                            </a>
+
+                            <div class="entry-subtitle">
+                                <i class="bi bi-geo-alt-fill"></i> @mekan.City, @mekan.Country
+                            </div>
+
+                            <div class="entry-content">
+                                @(mekan.Description != null && mekan.Description.Length > 180
+                                    ? Html.Raw(mekan.Description.Substring(0, 180) + "...")
+                                    : Html.Raw(mekan.Description))
+                            </div>
+                        </div>
+
+                        <a href="@Url.Action("PlaceDetail", "Guide", new { id = mekan.TouristAttractionId })" class="btn-read-more">
+                            İNCELE
+                        </a>
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count() == 0)
+            {
+                <div style="padding: 20px; background: #fff3cd; color: #856404; border-radius: 8px;">
+                    Aradığınız kriterlere uygun sonuç bulunamadı.
+                </div>
+            }
+        </div>
+
+        <div class="side-content">
+            <div class="sidebar-widget">
+                <h4>Hızlı Arama</h4>
+                <form action="@Url.Action("Search", "Guide")" method="get">
+                    <input type="text" name="query" class="search-input" placeholder="Mekan veya şehir..." required>
+                    <button type="submit" class="btn-search">ARA</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

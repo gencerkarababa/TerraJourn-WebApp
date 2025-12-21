@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TerraJourn.Models.Entities.TouristAttraction>
+
+@{
+    ViewBag.Title = "Mekan Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Yeni Mekan Oluştur", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Mekan Adı</th>
+        <th>İşlemler</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TouristAttractionId</td>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.TouristAttractionId }, new { @class = "btn btn-warning btn-sm" }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.TouristAttractionId }, new { @class = "btn btn-info btn-sm" }) |
+                <form action="@Url.Action("Delete", "TouristAttractions", new { id = item.TouristAttractionId })" method="post" onsubmit="return confirm('Bu mekanı silmek istediğinizden emin misiniz?');" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

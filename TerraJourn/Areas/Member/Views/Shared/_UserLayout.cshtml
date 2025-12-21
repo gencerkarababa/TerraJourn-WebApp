@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>@ViewBag.Title - TerraJourn</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="~/Content/mycss/profilelayout.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsProfil" aria-controls="navbarsProfil" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsProfil">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Profile", new { area = "Member" })">
+                        <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Profilim
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Blogs", new { area = "Member" })">
+                        <i class="bi bi-journal-richtext" style="margin-right: 5px;"></i> Bloglarım
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Comments", new { area = "Member" })">
+                        <i class="bi bi-chat-dots-fill" style="margin-right: 5px;"></i> Yorumlarım
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })">
+                        Siteye Dön <i class="bi bi-arrow-return-right" style="font-size: 1.1rem; margin-left:5px;"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Logout", "Account", new { area = "" })" style="color: #ff6b6b !important;">
+                        Çıkış Yap <i class="bi bi-power" style="font-size: 1rem; margin-left:5px;"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-container">
+        <div id="content-wrap" class="container">
+            @RenderBody()
+        </div>
+
+        <footer>
+            &copy; 2025 TerraJourn. Tüm Hakları Saklıdır.
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

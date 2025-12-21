@@ -1,0 +1,317 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Oswald:100,400,300,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic');
+
+:root {
+    --primary-color: #001f3f;
+    --hover-color: #ffd800; 
+    --cream-accent: #C2A385;
+    --text-color: #001f3f;
+    --light-bg: #f9f9f9;
+    --card-bg: #fff;
+    --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-heavy: 0 10px 20px rgba(0, 31, 63, 0.15);
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+}
+
+/* Ana Kapsayıcı ve Sütun Yapısı */
+.blog-index .blog-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 0 15px;
+}
+
+.blog-index .blog-list-area {
+    flex: 2;
+    min-width: 60%;
+}
+
+.blog-index .sidebar {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Blog Kartları - Liste Şeklinde */
+.blog-index .blog-item {
+    display: flex;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+    .blog-index .blog-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-heavy);
+        border-color: var(--hover-color);
+    }
+
+.blog-index .blog-image {
+    width: 300px;
+    height: auto;
+    min-height: 220px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.blog-index .blog-item-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    color: #001f3f !important;
+}
+
+    .blog-index .blog-item-content > a {
+        text-decoration: none !important;
+        border: none !important;
+        display: block;
+        color: var(--primary-color);
+    }
+
+        .blog-index .blog-item-content > a:hover {
+            text-decoration: none !important;
+        }
+
+    .blog-index .blog-item-content h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.6rem;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        transition: color 0.3s;
+        font-weight: 700;
+    }
+
+    .blog-index .blog-item-content > a:hover h3 {
+        color: var(--hover-color);
+    }
+
+/* -------------------------------------------------- */
+
+
+/* Kategori Linkleri */
+.blog-index .category-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #eee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+    .blog-index .category-link:hover {
+        background-color: var(--hover-color);
+        text-decoration: none;
+    }
+
+
+.blog-index .blog-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+/* Devamını Oku Linki */
+.blog-index .read-more {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-top: auto;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+}
+
+    .blog-index .read-more:hover {
+        color: var(--hover-color);
+        border-bottom-color: var(--hover-color);
+    }
+
+/* Sayfa Başlıkları */
+.blog-index .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--cream-accent);
+    padding-bottom: 10px;
+}
+
+/* Sidebar Widgetları */
+.blog-index .widget {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+}
+
+    .blog-index .widget h4 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--cream-accent);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Arama Formu */
+    .blog-index .widget form {
+        display: flex;
+        gap: 10px;
+    }
+
+.blog-index .search-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    outline: none;
+}
+
+    .blog-index .search-input:focus {
+        border-color: var(--primary-color);
+    }
+
+.blog-index .search-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .blog-index .search-button:hover {
+        background-color: var(--hover-color);
+        color: #000;
+    }
+
+/* Kategori Listesi - Sidebar */
+.blog-index .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .blog-index .category-list li {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 10px;
+    }
+
+        .blog-index .category-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+    .blog-index .category-list a,
+    .blog-index .category-list a:visited {
+        color: #495057;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        transition: color 0.3s ease;
+    }
+
+        .blog-index .category-list a i {
+            margin-right: 10px;
+        }
+
+        .blog-index .category-list a:hover {
+            color: var(--hover-color); /* SARI */
+            font-weight: 600;
+            padding-left: 5px;
+        }
+
+/* Sayfalama */
+.blog-index .pagination {
+    display: flex;
+    padding: 0;
+    list-style: none;
+}
+
+.blog-index .pagination-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.blog-index .pagination a,
+.blog-index .pagination .active a {
+    display: block;
+    padding: 10px 18px;
+    text-decoration: none;
+    color: var(--primary-color);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s;
+    background: #fff;
+}
+
+.blog-index .pagination li {
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.blog-index .pagination a:hover {
+    background-color: var(--hover-color); 
+    color: #000;
+    border-color: var(--hover-color);
+}
+
+.blog-index .pagination .active a {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+    .blog-index .blog-page-container {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .blog-index .blog-list-area,
+    .blog-index .sidebar {
+        flex: 1;
+        min-width: 100%;
+    }
+
+    .blog-index .sidebar {
+        margin-top: 40px;
+    }
+
+    .blog-index .blog-item {
+        flex-direction: column;
+    }
+
+    .blog-index .blog-image {
+        width: 100%;
+        height: 250px;
+    }
+}

@@ -1,0 +1,136 @@
+﻿@model TerraJourn.Models.ViewModels.BlogDetailsViewModel
+@{
+    ViewBag.Title = Model.Blog.Title;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/blogdetails.css" rel="stylesheet" />
+
+<div class="blog-details-page">
+    <div class="blog-details-container">
+        <div class="main-content-area">
+            <div class="single-blog-post">
+                <img src="@Model.Blog.ImageUrl" alt="@Model.Blog.Title" class="post-image" />
+                <h1 class="post-title">@Model.Blog.Title</h1>
+
+                <p class="post-meta">
+                    <small>
+                        <strong>Yazar:</strong> @Model.Blog.User.UserName |
+                        <strong>Tarih:</strong> @Model.Blog.CreatedDate.ToString("dd MMMM yyyy") |
+                        <strong>Kategoriler:</strong>
+                        @if (Model.Blog.BlogCategories != null && Model.Blog.BlogCategories.Any())
+                        {
+                            foreach (var category in Model.Blog.BlogCategories)
+                            {
+                                var urlFriendlyName = category.Name.Replace(" ", "-");
+                                <a href="@Url.Action("Index", "Blog", new { categoryName = urlFriendlyName })">
+                                    @category.Name
+                                </a>
+                            }
+                        }
+                    </small>
+                </p>
+                <hr />
+                <div class="post-content">
+                    @Html.Raw(Model.Blog.Content)
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <h2 class="section-title">Yorumlar</h2>
+                @if (Model.Comments != null && Model.Comments.Any())
+                {
+                    <ul class="comments-list">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <li class="comment-item">
+                                <img src="~/Images/avatar.png" class="comment-avatar" alt="Avatar" />
+                                <div class="comment-body">
+                                    <div class="comment-author">@comment.User.UserName</div>
+                                    <p class="comment-text">@comment.Text</p>
+                                    <small class="comment-date">@comment.CreatedDate.ToString("dd.MM.yyyy")</small>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>Henüz hiç yorum yapılmamış. İlk yorumu siz yapın!</p>
+                }
+
+                <div class="comment-form-container">
+                    <h3 class="form-title">Bir Yorum Bırakın...</h3>
+                    <form id="commentForm" method="post" action="@Url.Action("SubmitComment", "Blog")">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="BlogId" value="@Model.Blog.BlogId" required />
+                        <textarea placeholder="Yorumunuzu buraya yazın..." name="Text" required></textarea>
+                        <button type="submit" class="submit-button">GÖNDER</button>
+                    </form>
+                    <div id="commentResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="widget search-widget">
+                <h4>Bloglarda Ara</h4>
+                <form action="@Url.Action("Search", "Blog")" method="get">
+                    <input type="text" name="query" class="search-input" placeholder="Aranacak kelime..." required>
+                    <button type="submit" class="search-button">Bul</button>
+                </form>
+            </div>
+
+            <div class="widget categories-widget">
+                <h4>Kategoriler</h4>
+                <ul class="category-list">
+                    <li><a href="@Url.Action("Index", "Blog")">Tümü</a></li>
+                    @if (Model.Categories != null)
+                    {
+                        foreach (var category in Model.Categories)
+                        {
+                            var urlFriendlyName = category.Name.Replace(" ", "-");
+                            <li>
+                                <a href="@Url.Action("Index", "Blog", new { categoryName = urlFriendlyName })">
+                                    @if (!string.IsNullOrEmpty(category.IconClass))
+                                    {
+                                        <i class="@category.IconClass"></i>
+                                    }
+                                    @category.Name
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#commentForm').submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#commentForm')[0].reset();
+                            $('#commentResult').html('<p style="color: green;">Yorumunuz başarıyla eklendi. Sayfa yenileniyor...</p>');
+                            setTimeout(function () { location.reload(); }, 1500);
+                        } else {
+                            $('#commentResult').html('<p style="color: red;">' + response.message + '</p>');
+                        }
+                    },
+                    error: function () {
+                        $('#commentResult').html('<p style="color: red;">Yorum eklenirken bir hata oluştu.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+}

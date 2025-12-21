@@ -1,0 +1,85 @@
+﻿@using TerraJourn.Models.Entities
+@model List<TouristAttraction>
+@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/homepage.css" rel="stylesheet" />
+
+<div class="main-container">
+
+    <div class="slider-container">
+        @if (Model != null && Model.Count > 0)
+        {
+            int count = 0;
+            foreach (var item in Model.Take(5))
+            {
+                <div class="slide @(count == 0 ? "active" : "")">
+                    <img src="@item.ImageUrl" alt="@item.Name" />
+                    <div class="slider-caption">
+                        <h2>@item.Name</h2>
+                        <p>Bu rotayı keşfetmeye hazır mısın?</p>
+                        <a href="@Url.Action("PlaceDetail", "Guide", new { id = item.TouristAttractionId })" class="btn-slider">İncele</a>
+                    </div>
+                </div>
+                count++;
+            }
+        }
+
+        <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <section id="populer">
+        <h2 class="section-title">Popüler Noktalar</h2>
+        <div class="grid-row">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <img src="@item.ImageUrl" alt="@item.Name" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">@item.Name</h3>
+                        <p class="card-desc">Bu eşsiz konumu keşfetmek için tıklayın.</p>
+                        <a href="@Url.Action("PlaceDetail", "Guide", new { id = item.TouristAttractionId })" class="read-more">İncele →</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section>
+        @Html.Action("RecentBlogsPartial", "Home")
+    </section>
+
+    <section class="split-section">
+        <div class="split-left">
+            @Html.Action("AllBlogsPartial", "Home")
+        </div>
+        <div class="split-right">
+            @Html.Action("FeaturedAttractionsPartial", "Home")
+        </div>
+    </section>
+
+</div>
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    // Otomatik geçiş (5 saniyede bir)
+    setInterval(function () {
+        moveSlide(1);
+    }, 5000);
+
+    function moveSlide(n) {
+        if (slides.length === 0) return;
+
+        slides[slideIndex].classList.remove("active");
+        slideIndex += n;
+
+        if (slideIndex >= slides.length) { slideIndex = 0; }
+        if (slideIndex < 0) { slideIndex = slides.length - 1; }
+
+        slides[slideIndex].classList.add("active");
+    }
+</script>

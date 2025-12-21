@@ -1,0 +1,118 @@
+﻿@model TerraJourn.Models.ViewModels.BlogIndexViewModel
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Bloglar";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/blogindex.css" rel="stylesheet" />
+
+<div class="blog-index">
+    <div class="blog-page-container">
+
+        <div class="blog-list-area">
+
+            @if (!string.IsNullOrEmpty(ViewBag.SearchQuery))
+            {
+                <h3 class="page-title">"@ViewBag.SearchQuery" için Arama Sonuçları</h3>
+                <hr />
+
+                if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-info">
+                        @ViewBag.Message
+                    </div>
+                }
+            }
+            else if (!string.IsNullOrEmpty(ViewBag.CurrentCategory))
+            {
+                <h3 class="page-title">@(ViewBag.CurrentCategory.Replace("-", " ")) Kategorisindeki Yazılar</h3>
+            }
+            else
+            {
+                <h3 class="page-title">Tüm Bloglar</h3>
+            }
+
+            @foreach (var blog in Model.PagedBlogs)
+            {
+                <div class="blog-item">
+                    <img src="@blog.ImageUrl" alt="@blog.Title" class="blog-image" />
+                    <div class="blog-item-content">
+                        <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })">
+                            <h3>@blog.Title</h3>
+                        </a>
+
+                        <p class="blog-meta">
+                            <span><strong>Yazar:</strong> @blog.User.UserName</span> |
+                            <span><strong>Tarih:</strong> @blog.CreatedDate.ToString("dd MMMM yyyy")</span>
+                        </p>
+
+                        <p class="blog-meta">
+                            <strong>Kategoriler:</strong>
+                            @if (blog.BlogCategories != null && blog.BlogCategories.Any())
+                            {
+                                foreach (var category in blog.BlogCategories)
+                                {
+                                    var urlFriendlyName = category.Name.Replace(" ", "-");
+                                    <a href="@Url.Action("Index", "Blog", new { categoryName = urlFriendlyName })" class="category-link">
+                                        @category.Name
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <span>Kategori atanmamış</span>
+                            }
+                        </p>
+
+                        <p>
+                            @(blog.Content != null && blog.Content.Length > 200 ? Html.Raw(blog.Content.Substring(0, 200) + "...") : Html.Raw(blog.Content))
+                        </p>
+
+                        <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })" class="read-more">
+                            Devamını Oku >>
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <div class="pagination-container">
+                @Html.PagedListPager(Model.PagedBlogs, page => Url.Action("Index", new { page, categoryName = ViewBag.CurrentCategory, query = ViewBag.SearchQuery }))
+            </div>
+        </div>
+
+        <div class="sidebar">
+
+            <div class="widget search-widget">
+                <h4>Bloglarda Ara</h4>
+                <form action="@Url.Action("Search", "Blog")" method="get">
+                    <input type="text" name="query" class="search-input" placeholder="Aranacak kelime..." required>
+                    <button type="submit" class="search-button">Bul</button>
+                </form>
+            </div>
+
+            <div class="widget categories-widget">
+                <h4>Kategoriler</h4>
+                <ul class="category-list">
+                    <li><a href="@Url.Action("Index", "Blog")">Tümü</a></li>
+
+                    @foreach (var category in Model.Categories)
+                    {
+                        var urlFriendlyName = category.Name.Replace(" ", "-");
+                        <li>
+                            <a href="@Url.Action("Index", "Blog", new { categoryName = urlFriendlyName })">
+                                @if (!string.IsNullOrEmpty(category.IconClass))
+                                {
+                                    <i class="@category.IconClass"></i>
+                                }
+                                @category.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

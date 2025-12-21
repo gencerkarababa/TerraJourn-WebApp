@@ -1,0 +1,52 @@
+﻿@model TerraJourn.Models.Entities.Blog
+
+@{
+    ViewBag.Title = "Blog Detayları";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>Blog ID</dt>
+    <dd>@Model.BlogId</dd>
+
+    <dt>Başlık</dt>
+    <dd>@Model.Title</dd>
+
+    <dt>Yayınlanma Tarihi</dt>
+    <dd>@Model.CreatedDate.ToString("dd MMMM yyyy")</dd>
+
+    <dt>Görsel URL</dt>
+    <dd>@Model.ImageUrl</dd>
+
+    <dt>Yazar</dt>
+    <dd>@(Model.User != null ? Model.User.UserName : "Bilinmiyor")</dd>
+
+    <dt>Kategoriler</dt>
+    <dd>
+        @if (Model.BlogCategories != null && Model.BlogCategories.Any())
+        {
+            <ul>
+                @foreach (var category in Model.BlogCategories)
+                {
+                    <li>@category.Name</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <span>Henüz kategori atanmadı.</span>
+        }
+    </dd>
+
+    <dt>İçerik</dt>
+    <dd>@Html.Raw(Model.Content)</dd>
+</dl>
+
+<hr />
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.BlogId }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "btn btn-secondary" })
+</p>

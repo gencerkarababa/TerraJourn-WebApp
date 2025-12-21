@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TerraJourn.Models.Entities.PlaceCategory>
+
+@{
+    ViewBag.Title = "Mekanlar";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/placecategories.css" rel="stylesheet" />
+
+<div class="main-container" style="margin-top:40px; margin-bottom:40px;">
+
+    <div class="guide-header">
+        <h2>Nereyi Keşfetmek İstersin?</h2>
+        <p>İlgini çeken bir kategori seçerek sana özel mekan önerilerini gör.</p>
+    </div>
+
+    <div class="category-row-5">
+        @{
+            var firstFiveCategories = Model.Take(5);
+            foreach (var kategori in firstFiveCategories)
+            {
+                <a href="@Url.Action("ListPlacesByCategory", "Guide", new { id = kategori.PlaceCategoryId })" class="category-card">
+
+                    <div class="card-img-wrapper">
+                        <img src="@kategori.ImageUrl" alt="@kategori.Name">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">@kategori.Name</h4>
+                        <p class="card-desc">@kategori.Description</p>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+
+    <div class="category-row-5">
+        @{
+            var remainingCategories = Model.Skip(5);
+            foreach (var kategori in remainingCategories)
+            {
+                <a href="@Url.Action("ListPlacesByCategory", "Guide", new { id = kategori.PlaceCategoryId })" class="category-card">
+
+                    <div class="card-img-wrapper">
+                        <img src="@kategori.ImageUrl" alt="@kategori.Name">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title">@kategori.Name</h4>
+                        <p class="card-desc">@kategori.Description</p>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+
+</div>

@@ -1,0 +1,114 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+:root {
+    --primary-color: #001f3f;
+    --accent-color: #C2A385; 
+    --hover-color: #ffd800; 
+    --text-dark: #333;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Lato', sans-serif;
+}
+
+/* Sayfa Başlığı */
+.contact-title {
+    font-family: 'Oswald', sans-serif;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-left: 15px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+/* Kart Tasarımı */
+.contact-card {
+    background: var(--white);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 31, 63, 0.1);
+    padding: 40px;
+    border-top: 5px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Bilgi Satırları */
+.info-row {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+}
+
+    .info-row i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-right: 15px;
+        width: 30px;
+        text-align: center;
+    }
+
+    .info-row b {
+        color: var(--primary-color);
+        margin-right: 8px;
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 0.5px;
+    }
+
+    .info-row a {
+        color: var(--text-dark);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .info-row a:hover {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+/* Canlı Destek Butonu */
+.btn-live-support {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+    .btn-live-support:hover {
+        background-color: var(--white);
+        color: var(--primary-color);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+/* Harita Alanı */
+.map-container {
+    height: 400px;
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    margin-top: 30px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}

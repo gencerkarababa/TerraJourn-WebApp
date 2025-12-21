@@ -1,0 +1,33 @@
+﻿@model TerraJourn.Models.Entities.Comment
+
+@{
+    ViewBag.Title = "Yorumu Düzenle";
+    Layout = "~/Areas/Member/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Yorumu Düzenle</h2>
+
+@using (Html.BeginForm("Edit", "Comments", new { area = "Member" }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.CommentId)
+    @Html.HiddenFor(m => m.BlogId)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.CreatedDate)
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Text, "Yorumunuz")
+        @Html.TextAreaFor(m => m.Text, new { @class = "form-control", rows = 5, placeholder = "Yorumunuzu güncelleyin..." })
+        @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Güncelle</button>
+
+    <a href="@Url.Action("Index", "Comments", new { area = "Member" })" class="btn btn-secondary">İptal</a>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

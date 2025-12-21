@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraJourn Admin</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="~/Content/mycss/adminlayout.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <h3>TerraJourn</h3>
+        </div>
+
+        <div class="sidebar-menu">
+            <a href="/Admin/Blogs/Index" class="menu-item">
+                <i class="bi bi-pen-fill"></i> <span>Bloglar</span>
+            </a>
+
+            <a href="/Admin/BlogCategories/Index/" class="menu-item">
+                <i class="bi bi-tags-fill"></i> <span>Blog Kategorileri</span>
+            </a>
+
+            <a href="/Admin/TouristAttractions/Index" class="menu-item">
+                <i class="bi bi-geo-alt-fill"></i> <span>Mekanlar</span>
+            </a>
+
+            <a href="/Admin/PlaceCategories/Index/" class="menu-item">
+                <i class="bi bi-map-fill"></i> <span>Mekan Kategorileri</span>
+            </a>
+
+            <a href="/Admin/Users/Index" class="menu-item">
+                <i class="bi bi-people-fill"></i> <span>Kullanıcılar</span>
+            </a>
+
+            <a href="/Admin/Comments/Index" class="menu-item">
+                <i class="bi bi-chat-left-text-fill"></i> <span>Yorumlar</span>
+            </a>
+
+            <div class="menu-divider"></div>
+
+            <a href="/Home/Index/" class="menu-item" target="_blank">
+                <i class="bi bi-box-arrow-up-right"></i> <span>Siteye Git</span>
+            </a>
+
+            <a href="/Account/Logout/" class="menu-item" style="color: #ff6b6b;">
+                <i class="bi bi-power"></i> <span>Çıkış Yap</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+
+        <header class="admin-header">
+            <h1 class="page-title">Admin Yönetim Paneli</h1>
+
+            <div style="color: #666; font-size: 0.9rem;">
+                <i class="bi bi-calendar3"></i> @DateTime.Now.ToString("dd MMMM yyyy")
+            </div>
+        </header>
+
+        <div class="content-body">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert-box alert-success">
+                    <div>
+                        <strong>Başarılı!</strong> @TempData["SuccessMessage"]
+                    </div>
+                    <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert-box alert-error">
+                    <div>
+                        <strong>Hata!</strong> @TempData["ErrorMessage"]
+                    </div>
+                    <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

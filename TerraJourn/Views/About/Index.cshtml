@@ -1,0 +1,25 @@
+﻿@using TerraJourn.Models.Entities
+@model List<AboutUs>
+@{
+    ViewBag.Title = "Hakkımızda";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/about.css" rel="stylesheet" />
+
+<div class="about-container">
+
+    <h1 class="about-title">Hakkımızda</h1>
+
+    @foreach (var item in Model)
+    {
+        <div class="about-item">
+            <img src="@item.ImageUrl" alt="Hakkımızda Görseli" class="about-img" />
+
+            <div class="about-desc">
+                <p>@item.Description</p>
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,56 @@
+﻿@model TerraJourn.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TerraJourn - Giriş</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/mycss/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="padding-all">
+        <div class="header">
+            <h1>HOŞGELDİNİZ</h1>
+        </div>
+
+        <div class="design-w3l">
+            <div class="mail-form-agile">
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="error-message">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı", required = "required" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control padding", placeholder = "Şifre", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <input type="submit" value="Giriş Yap" class="submit-btn" />
+                }
+
+                <input type="button" value="Kayıt Ol" class="submit-btn" onclick="window.location.href='@Url.Action("Register", "Account")'" />
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 TerraJourn. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html>

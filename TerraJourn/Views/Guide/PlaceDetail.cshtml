@@ -1,0 +1,75 @@
+﻿@model TerraJourn.Models.Entities.TouristAttraction
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<link href="~/Content/mycss/placedetails.css" rel="stylesheet" />
+
+<div class="place-details-page">
+    <div class="place-details-container">
+
+        <div class="main-content-area">
+
+            <div class="place-info-card">
+
+                <img src="@Model.ImageUrl" alt="@Model.Name" class="place-image" />
+
+                <div class="content-wrapper">
+
+                    <h1 class="place-name">@Model.Name</h1>
+
+                    <div class="section about-section">
+                        <h4 class="section-title">Hakkında</h4>
+                        <div class="content-paragraph">
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+
+                    <div class="section details-section">
+                        <h4 class="section-title">Detaylı Bilgiler</h4>
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Ülke</span>
+                                <span>@Model.Country</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Şehir</span>
+                                <span>@Model.City</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Adres</span>
+                                <span>@(string.IsNullOrEmpty(Model.Address) ? "Belirtilmemiş" : Model.Address)</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Kategoriler</span>
+                                <div class="category-badges">
+                                    @if (Model.PlaceCategories != null && Model.PlaceCategories.Any())
+                                    {
+                                        foreach (var category in Model.PlaceCategories)
+                                        {
+                                            <a href="@Url.Action("ListPlacesByCategory", "Guide", new { id = category.PlaceCategoryId })" class="category-badge">
+                                                @category.Name
+                                            </a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="no-category" style="font-style:italic; color:#999;">Kategori yok.</span>
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div> <div style="margin-top: 25px; padding-left: 5px;">
+                <a href="javascript:history.back()" class="btn-back-bottom">
+                    <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

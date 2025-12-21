@@ -1,0 +1,20 @@
+﻿@using TerraJourn.Models.Entities
+@model List<Blog>
+
+<h2 class="section-title">Haftanın Blogları</h2>
+
+<ul class="top-list">
+    @{ int i = 0; }
+    @foreach (var blog in Model.Take(10))
+    {
+        <li>
+            <span class="list-num">@{i++;} @i</span>
+            <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })">
+                @(blog.Title != null && blog.Title.Length > 35 ? blog.Title.Substring(0, 35) + "..." : blog.Title)
+            </a>
+        </li>
+    }
+</ul>
+<div style="margin-top:10px;">
+    <a href="@Url.Action("Index", "Blog")" class="read-more">Tüm Blogları Gör →</a>
+</div>

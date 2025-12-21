@@ -1,0 +1,20 @@
+﻿@model TerraJourn.Models.Entities.User
+
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Areas/Member/Views/Shared/_UserLayout.cshtml";
+}
+
+<link href="~/Content/mycss/profile.css" rel="stylesheet" />
+
+<h2 class="profile-welcome">Hoşgeldin, @Model.UserName!</h2>
+
+<div class="user-info">
+    <h3>Kullanıcı Bilgilerin</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Kullanıcı Adı:</strong> @Model.UserName</li>
+        <li class="list-group-item"><strong>E-posta:</strong> @Model.Email</li>
+    </ul>
+</div>
+
+<p>Burası kişisel panelin. Buradan site üzerindeki tüm içeriklerini yönetebilirsin.</p>

@@ -1,0 +1,55 @@
+﻿@using TerraJourn.Models.Entities
+@model IEnumerable<Comment>
+@{
+    ViewBag.Title = "Yorum Listesi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yorum Listesi</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kullanıcı</th>
+            <th>Yorum</th>
+            <th>Ait Olduğu Blog</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CommentId</td>
+                <td>
+                    @if (item.User != null)
+                    {
+                        @Html.ActionLink(item.User.UserName, "Details", "Users", new { id = item.User.UserId }, null)
+                    }
+                    else
+                    {
+                        @:N/A
+                    }
+                </td>
+                <td>@item.Text</td>
+                <td>
+                    @if (item.Blog != null)
+                    {
+                        @Html.ActionLink(item.Blog.Title, "Details", "Blogs", new { id = item.Blog.BlogId }, null)
+                    }
+                    else
+                    {
+                        @:N/A
+                    }
+                </td>
+                <td>
+                    <form action="@Url.Action("Delete", "Comments", new { id = item.CommentId })" method="post" onsubmit="return confirm('Bu yorumu silmek istediğinizden emin misiniz?');" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

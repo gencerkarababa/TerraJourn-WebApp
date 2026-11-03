@@ -15,6 +15,8 @@ namespace TerraJourn.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Option> Options { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

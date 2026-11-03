@@ -178,7 +178,13 @@
     <Compile Include="Migrations\202611030830363_GuideSettingsss.Designer.cs">
       <DependentUpon>202611030830363_GuideSettingsss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202611030905556_AddquestionAddoption.cs" />
+    <Compile Include="Migrations\202611030905556_AddquestionAddoption.Designer.cs">
+      <DependentUpon>202611030905556_AddquestionAddoption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entities\Option.cs" />
+    <Compile Include="Models\Entities\Question.cs" />
     <Compile Include="Models\ViewModels\AssignedCategoryData.cs" />
     <Compile Include="Models\ViewModels\BlogDetailsViewModel.cs" />
     <Compile Include="Models\ViewModels\BlogFormViewModel.cs" />
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202611030830363_GuideSettingsss.resx">
       <DependentUpon>202611030830363_GuideSettingsss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202611030905556_AddquestionAddoption.resx">
+      <DependentUpon>202611030905556_AddquestionAddoption.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

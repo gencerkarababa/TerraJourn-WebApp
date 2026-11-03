@@ -59,6 +59,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -125,9 +128,6 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -183,24 +183,25 @@
       <DependentUpon>202611030905556_AddquestionAddoption.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entities\Option.cs" />
-    <Compile Include="Models\Entities\Question.cs" />
-    <Compile Include="Models\ViewModels\AssignedCategoryData.cs" />
-    <Compile Include="Models\ViewModels\BlogDetailsViewModel.cs" />
-    <Compile Include="Models\ViewModels\BlogFormViewModel.cs" />
-    <Compile Include="Models\ViewModels\BlogIndexViewModel.cs" />
-    <Compile Include="Models\Entities\BlogCategory.cs" />
-    <Compile Include="Models\Entities\HomePage.cs" />
-    <Compile Include="Models\Entities\Blog.cs" />
+    <Compile Include="Migrations\Models\Entities\Option.cs" />
+    <Compile Include="Migrations\Models\Entities\Question.cs" />
+    <Compile Include="Migrations\Models\ViewModels\AssignedCategoryData.cs" />
+    <Compile Include="Migrations\Models\ViewModels\BlogDetailsViewModel.cs" />
+    <Compile Include="Migrations\Models\ViewModels\BlogFormViewModel.cs" />
+    <Compile Include="Migrations\Models\ViewModels\BlogIndexViewModel.cs" />
+    <Compile Include="Migrations\Models\Entities\BlogCategory.cs" />
+    <Compile Include="Migrations\Models\Entities\HomePage.cs" />
+    <Compile Include="Migrations\Models\Entities\Blog.cs" />
     <Compile Include="Data\Context.cs" />
-    <Compile Include="Models\Entities\AboutUs.cs" />
-    <Compile Include="Models\Entities\User.cs" />
-    <Compile Include="Models\Entities\Comment.cs" />
-    <Compile Include="Models\Entities\ContactInformation.cs" />
-    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
-    <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
-    <Compile Include="Models\ViewModels\UserViewModel.cs" />
+    <Compile Include="Migrations\Models\Entities\AboutUs.cs" />
+    <Compile Include="Migrations\Models\Entities\User.cs" />
+    <Compile Include="Migrations\Models\Entities\Comment.cs" />
+    <Compile Include="Migrations\Models\Entities\ContactInformation.cs" />
+    <Compile Include="Migrations\Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Migrations\Models\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Migrations\Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GeminiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -307,6 +308,8 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Guide\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Guide\ResultTest.cshtml" />
+    <Content Include="Views\Guide\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

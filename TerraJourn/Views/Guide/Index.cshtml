@@ -1,57 +1,24 @@
-﻿@model IEnumerable<TerraJourn.Models.Entities.PlaceCategory>
-
-@{
-    ViewBag.Title = "Mekanlar";
+﻿@{
+    ViewBag.Title = "Akıllı Rota Sihirbazı";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<link href="~/Content/mycss/placecategories.css" rel="stylesheet" />
+<!-- İleride kullanacağın özel CSS dosyan için yer tutucu -->
+<link href="~/Content/mycss/smartroute.css" rel="stylesheet" />
 
-<div class="main-container" style="margin-top:40px; margin-bottom:40px;">
+<div class="main-container" style="margin-top:60px; margin-bottom:60px; text-align: center;">
 
-    <div class="guide-header">
-        <h2>Nereyi Keşfetmek İstersin?</h2>
-        <p>İlgini çeken bir kategori seçerek sana özel mekan önerilerini gör.</p>
+    <div class="guide-header" style="margin-bottom: 40px;">
+        <h2>🤖 Yapay Zeka Destekli Akıllı Rota Sihirbazı</h2>
+        <p>Sana özel en mükemmel seyahat planını oluşturmak için hazırlık yapılıyor...</p>
     </div>
 
-    <div class="category-row-5">
-        @{
-            var firstFiveCategories = Model.Take(5);
-            foreach (var kategori in firstFiveCategories)
-            {
-                <a href="@Url.Action("ListPlacesByCategory", "Guide", new { id = kategori.PlaceCategoryId })" class="category-card">
-
-                    <div class="card-img-wrapper">
-                        <img src="@kategori.ImageUrl" alt="@kategori.Name">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">@kategori.Name</h4>
-                        <p class="card-desc">@kategori.Description</p>
-                    </div>
-                </a>
-            }
-        }
-    </div>
-
-    <div class="category-row-5">
-        @{
-            var remainingCategories = Model.Skip(5);
-            foreach (var kategori in remainingCategories)
-            {
-                <a href="@Url.Action("ListPlacesByCategory", "Guide", new { id = kategori.PlaceCategoryId })" class="category-card">
-
-                    <div class="card-img-wrapper">
-                        <img src="@kategori.ImageUrl" alt="@kategori.Name">
-                    </div>
-
-                    <div class="card-body">
-                        <h4 class="card-title">@kategori.Name</h4>
-                        <p class="card-desc">@kategori.Description</p>
-                    </div>
-                </a>
-            }
-        }
+    <!-- Burası ileride soru kartlarının ve formun geleceği ana alan -->
+    <div class="smart-route-wrapper" style="max-width: 700px; margin: 0 auto; background: #f9f9f9; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h3>Çok Yakında Burada!</h3>
+        <p style="color: #666; margin-top: 15px;">
+            Eski rehber sayfası kaldırıldı. Şimdi buraya kullanıcı tercihlerini alan dinamik, kart tabanlı bir yapay zeka formu kuruyoruz.
+        </p>
     </div>
 
 </div>

@@ -39,7 +39,7 @@
         <div class="grid-row">
             @if (Model != null)
             {
-                foreach (var item in Model)
+                foreach (var item in Model.Take(8))
                 {
                     <div class="card">
                         @if (!string.IsNullOrEmpty(item.ImageUrl))

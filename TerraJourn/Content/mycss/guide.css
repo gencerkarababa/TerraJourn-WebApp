@@ -1,0 +1,142 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Oswald:700&family=Lato:400,700');
+
+:root {
+    --primary-color: #001f3f;
+    --hover-color: #ffd800;
+}
+
+body {
+    background-color: #f9f9f9;
+    font-family: 'Lato', sans-serif;
+    color: #001f3f;
+}
+
+.guide-wizard-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+.wizard-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+}
+
+.wizard-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+    .wizard-header h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+.step-badge {
+    background: #e1e8f0;
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.wizard-question {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    margin: 15px 0 25px 0;
+    color: var(--primary-color);
+}
+
+/* 2'şerli Kutular */
+.options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-card {
+    flex: 1 1 calc(50% - 15px);
+    max-width: calc(50% - 15px);
+    min-width: 250px;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+    .option-card:last-child:nth-child(odd) {
+        margin: 0 auto;
+    }
+
+    .option-card input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 12px;
+        accent-color: var(--hover-color);
+        cursor: pointer;
+    }
+
+    .option-card span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    .option-card:hover {
+        border-color: var(--primary-color);
+    }
+
+    .option-card.selected-card {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+    }
+
+        .option-card.selected-card span {
+            color: #ffffff !important;
+        }
+
+/* Butonlar */
+.wizard-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-wizard-prev {
+    background: #e9ecef;
+    color: #495057;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-wizard-next, .btn-wizard-submit {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .btn-wizard-next:hover, .btn-wizard-submit:hover {
+        background: var(--hover-color);
+        color: #000;
+    }

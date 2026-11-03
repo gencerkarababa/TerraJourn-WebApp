@@ -42,7 +42,7 @@ namespace TerraJourn.Controllers
 
             string userPreferences = string.Join(", ", choices);
 
-            // Yapay zekaya göndereceğimiz profesyonel prompt
+            // Yapay zekaya gönderilen prompt bu
             string prompt = $"Sen profesyonel bir yapay zeka seyahat rehberisin. " +
                             $"Kullanıcının seyahat tercihleri şunlardır: {userPreferences}. " +
                             $"Bu tercihlere tam uygun, samimi, akıcı ve gün gün planlanmış harika bir seyahat rotası hazırla.";

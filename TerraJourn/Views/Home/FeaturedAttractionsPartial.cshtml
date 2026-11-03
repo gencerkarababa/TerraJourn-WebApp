@@ -1,20 +1,14 @@
-﻿@using TerraJourn.Models.Entities
-@model List<Blog>
+﻿@model object
 
-<h2 class="section-title">Haftanın Blogları</h2>
+<h2 class="section-title">Konaklama</h2>
 
-<ul class="top-list">
-    @{ int i = 0; }
-    @foreach (var blog in Model.Take(10))
-    {
-        <li>
-            <span class="list-num">@{i++;} @i</span>
-            <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })">
-                @(blog.Title != null && blog.Title.Length > 35 ? blog.Title.Substring(0, 35) + "..." : blog.Title)
-            </a>
-        </li>
-    }
-</ul>
-<div style="margin-top:10px;">
-    <a href="@Url.Action("Index", "Blog")" class="read-more">Tüm Blogları Gör →</a>
+<div class="promo-card" style="background: #ffffff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid #eaeaea; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+    <div>
+        <span class="promo-badge" style="background: #fdf2e9; color: #C2A385; padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">Otel Rehberi</span>
+        <h3 style="font-size: 1.3rem; color: #001f3f; margin: 12px 0 8px 0; font-weight: bold;">🏨 En İyi Otel Fiyatları</h3>
+        <p style="color: #636e72; font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">Gideceğin şehirde bütçene ve tarzına en uygun otelleri keşfet, konforlu bir konaklama deneyimi yaşa.</p>
+    </div>
+    <div>
+        <a href="https://www.booking.com" target="_blank" class="promo-btn" style="display: block; text-align: center; background: #C2A385; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; text-decoration: none; transition: background 0.2s;">Otelleri Keşfet →</a>
+    </div>
 </div>

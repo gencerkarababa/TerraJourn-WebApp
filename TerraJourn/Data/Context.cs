@@ -14,9 +14,7 @@ namespace TerraJourn.Data
         public DbSet<ContactInformation> ContactInformations { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<TouristAttraction> TouristAttractions { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
-        public DbSet<PlaceCategory> PlaceCategories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

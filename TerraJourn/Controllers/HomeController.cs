@@ -14,8 +14,8 @@ namespace TerraJourn.Controllers
 
         public ActionResult Index()
         {
-            var latestTouristAttractions = _context.TouristAttractions.OrderByDescending(b => b.TouristAttractionId).Take(4).ToList();
-            return View(latestTouristAttractions);
+            var allBlogs = _context.Blogs.ToList();
+            return PartialView(allBlogs);
         }
 
         public PartialViewResult RecentBlogsPartial()
@@ -32,8 +32,8 @@ namespace TerraJourn.Controllers
 
         public PartialViewResult FeaturedAttractionsPartial()
         {
-            var randomAttractions = _context.TouristAttractions.OrderBy(x => Guid.NewGuid()).Take(6).ToList();
-            return PartialView(randomAttractions);
+            var allBlogs = _context.Blogs.ToList();
+            return PartialView(allBlogs);
         }
 
         protected override void Dispose(bool disposing)

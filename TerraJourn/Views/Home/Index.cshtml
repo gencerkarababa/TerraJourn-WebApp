@@ -1,5 +1,5 @@
 ﻿@using TerraJourn.Models.Entities
-@model List<TouristAttraction>
+@model List<Blog>
 @{
     ViewBag.Title = "Ana Sayfa";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -16,11 +16,14 @@
             foreach (var item in Model.Take(5))
             {
                 <div class="slide @(count == 0 ? "active" : "")">
-                    <img src="@item.ImageUrl" alt="@item.Name" />
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="@item.Title" />
+                    }
                     <div class="slider-caption">
-                        <h2>@item.Name</h2>
-                        <p>Bu rotayı keşfetmeye hazır mısın?</p>
-                        <a href="@Url.Action("PlaceDetail", "Guide", new { id = item.TouristAttractionId })" class="btn-slider">İncele</a>
+                        <h2>@item.Title</h2>
+                        <p>Bu yazıyı keşfetmeye hazır mısın?</p>
+                        <a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogId })" class="btn-slider">İncele</a>
                     </div>
                 </div>
                 count++;
@@ -32,18 +35,24 @@
     </div>
 
     <section id="populer">
-        <h2 class="section-title">Popüler Noktalar</h2>
+        <h2 class="section-title">Popüler Bloglar</h2>
         <div class="grid-row">
-            @foreach (var item in Model)
+            @if (Model != null)
             {
-                <div class="card">
-                    <img src="@item.ImageUrl" alt="@item.Name" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">@item.Name</h3>
-                        <p class="card-desc">Bu eşsiz konumu keşfetmek için tıklayın.</p>
-                        <a href="@Url.Action("PlaceDetail", "Guide", new { id = item.TouristAttractionId })" class="read-more">İncele →</a>
+                foreach (var item in Model)
+                {
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl" alt="@item.Title" class="card-img">
+                        }
+                        <div class="card-body">
+                            <h3 class="card-title">@item.Title</h3>
+                            <p class="card-desc">Bu eşsiz yazıyı okumak için tıklayın.</p>
+                            <a href="@Url.Action("BlogDetails", "Blog", new { id = item.BlogId })" class="read-more">İncele →</a>
+                        </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </section>
@@ -62,6 +71,7 @@
     </section>
 
 </div>
+
 <script>
     let slideIndex = 0;
     const slides = document.querySelectorAll(".slide");

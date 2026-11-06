@@ -24,16 +24,14 @@ namespace TerraJourn.Controllers
             return PartialView(recentBlogs);
         }
 
-        public PartialViewResult AllBlogsPartial()
+        public PartialViewResult AccommodationPartial()
         {
-            var allBlogs = _context.Blogs.ToList();
-            return PartialView(allBlogs);
+            return PartialView();
         }
 
-        public PartialViewResult FeaturedAttractionsPartial()
+        public PartialViewResult TransportationPartial()
         {
-            var allBlogs = _context.Blogs.ToList();
-            return PartialView(allBlogs);
+            return PartialView();
         }
 
         protected override void Dispose(bool disposing)

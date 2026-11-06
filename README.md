@@ -17,7 +17,7 @@ Site temel olarak 5 ana modül üzerine kuruludur:
 ### 👤 Kullanıcı Deneyimi
 * **İnteraktif Blog Sistemi:** Kullanıcılar kategorilere (Doğa, Gastronomi, Kültür&Tarih vb.) göre yazı yazabilir.
 * **Sosyal Etkileşim:** Blog yazılarına yorum yapma ve tartışma ortamı.
-* **Akıllı Rehber (Guide):** Kullanıcının tercihlerine göre sistem tarafından sunulan özel mekan önerileri.
+* **Akıllı Rehber (Guide):** Kullanıcının tercihlerine göre yapay zeka tarafından sunulan özel mekan önerileri.
 * **Güvenli Üyelik:** Kayıt olma, giriş yapma ve profil yönetimi.
 
 ### 🛡️ Yönetim (Admin) Paneli

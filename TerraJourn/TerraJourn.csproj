@@ -245,7 +245,7 @@
     <Content Include="Images\link1-bg.gif" />
     <Content Include="Images\more.png" />
     <Content Include="Images\search.png" />
-    <Content Include="Images\tjlogo.png" />
+    <Content Include="Images\te_j_y.png" />
     <Content Include="Images\yeni_tatil_resmi.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -304,8 +304,8 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\BlogDetails.cshtml" />
     <Content Include="Views\Home\RecentBlogsPartial.cshtml" />
-    <Content Include="Views\Home\AllBlogsPartial.cshtml" />
-    <Content Include="Views\Home\FeaturedAttractionsPartial.cshtml" />
+    <Content Include="Views\Home\TransportationPartial.cshtml" />
+    <Content Include="Views\Home\AccommodationPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Guide\Index.cshtml" />

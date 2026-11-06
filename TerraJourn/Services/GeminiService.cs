@@ -21,8 +21,7 @@ namespace TerraJourn.Services
 
                 using (HttpClient client = new HttpClient())
                 {
-                    // JSON'ı tamamen düz metin (string) olarak hazırlıyoruz - Hiçbir tip çakışması yaşanmaz!
-                    // Metin içindeki tırnakların bozulmaması için prompt'u escape ediyoruz veya doğrudan string interpolation kullanıyoruz.
+                    // JSON'ı tamamen düz metin (string) olarak hazırlıyoruz burada.
                     string escapedPrompt = userPreferencesPrompt.Replace("\"", "\\\"");
 
                     string jsonPayload = "{ \"contents\": [ { \"parts\": [ { \"text\": \"" + escapedPrompt + "\" } ] } ] }";
@@ -35,7 +34,7 @@ namespace TerraJourn.Services
                         string jsonResponse = await response.Content.ReadAsStringAsync();
                         JObject json = JObject.Parse(jsonResponse);
 
-                        // Gelen yanıttan yapay zekanın yazdığı metni çekiyoruz
+                        // Gelen yanıttan yapay zekanın yazdığı metni çekilir
                         string aiText = json["candidates"]?[0]?["content"]?["parts"]?[0]?["text"]?.ToString();
                         return aiText ?? "Yapay zekadan bir yanıt alınamadı.";
                     }

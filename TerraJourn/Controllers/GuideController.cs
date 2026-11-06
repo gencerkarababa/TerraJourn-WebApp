@@ -13,7 +13,6 @@ namespace TerraJourn.Controllers
         private Context db = new Context();
         private GeminiService geminiService = new GeminiService();
 
-        // GET: Guide/Index
         public ActionResult Index()
         {
             var questions = db.Questions
@@ -24,7 +23,6 @@ namespace TerraJourn.Controllers
             return View(questions);
         }
 
-        // POST: Guide/SubmitChoices
         [HttpPost]
         public async Task<ActionResult> SubmitChoices(int[] selectedOptions)
         {
@@ -34,7 +32,7 @@ namespace TerraJourn.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Seçilen Option ID'lerine karşılık gelen metinleri çekiyoruz
+            // Seçilen Option ID'lerine karşılık gelen metinleri çeker
             var choices = db.Options
                             .Where(o => selectedOptions.Contains(o.OptionId))
                             .Select(o => o.OptionText)
